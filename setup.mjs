@@ -3,8 +3,6 @@ import { debugVenv, getVenvBin, makeVenv } from "./util.mjs";
 
 makeVenv();
 
-debugVenv();
-
 const python3 = getVenvBin("python3");
 const pip = getVenvBin("pip");
 
@@ -15,3 +13,5 @@ execSync(`${python3} -m pip install --quiet --upgrade pip`, {
 
 console.log("instapp prysk@15");
 execSync(`${pip} install "prysk==0.15.0"`, { stdio: "inherit" });
+
+debugVenv();
