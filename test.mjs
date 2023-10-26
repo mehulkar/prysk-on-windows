@@ -11,9 +11,11 @@ console.log(`Running ${specificTest || "all"} tests... with ${pryskBin}`);
 
 const testArg = specificTest ? `tests/${specificTest}` : "tests";
 
+execSync(`which bash`, { stdio: "inherit" });
+
 try {
   execSync(`${pryskBin} --shell="$(which bash)" "${testArg}"`, {
-    stdio: "inherit", // to test output
+    stdio: "inherit",
   });
 } catch (e) {
   // Swallow the node error stack trace. stdio: inherit should

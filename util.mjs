@@ -29,7 +29,9 @@ export function getVenvBin(tool) {
     throw new Error(`Tool not allowed: ${tool}`);
   }
 
-  return path.join(venvBin, tool);
+  const suffix = isWindows ? ".exe" : "";
+
+  return path.join(venvBin, tool + suffix);
 }
 
 export function makeVenv() {
