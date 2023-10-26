@@ -1,0 +1,34 @@
+name: Test
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+
+jobs:
+  prysk:
+    name: prysk
+    runs-on: ${{ matrix.os.runner }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - name: ubuntu
+            runner: ubuntu-latest
+          - name: macos
+            runner: macos-latest
+          - name: windows
+            runner: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache
+        id: cache-prysk
+        uses: actions/cache@v3
+        with:
+          path: .cram_env
+          key: prysk-venv-${{ matrix.os.name }}
+
+      - name: Execute
+        shell: bash
+        run: npm run test

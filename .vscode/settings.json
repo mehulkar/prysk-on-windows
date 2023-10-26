@@ -1,0 +1,8 @@
+{
+    "[cram]": {
+        "editor.trimAutoWhitespace": false,
+        "files.trimFinalNewlines": false,
+        "files.insertFinalNewline": false,
+        "files.trimTrailingWhitespace": false
+    }
+}
