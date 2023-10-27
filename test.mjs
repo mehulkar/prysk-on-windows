@@ -19,7 +19,7 @@ const bash = bashBuffer.toString().trim();
 console.log("location of bash:", bash);
 
 try {
-  execSync(`${pryskBin} --shell="${bash}" "${testArg}"`, {
+  execSync(`${pryskBin} "${testArg}"`, {
     stdio: "inherit",
   });
 } catch (e) {
