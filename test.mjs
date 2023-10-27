@@ -11,11 +11,6 @@ console.log(`Running ${specificTest || "all"} tests... with ${pryskBin}`);
 
 const testArg = specificTest ? `tests/${specificTest}` : "tests";
 
-console.log("running which bash:");
-const bashBuffer = execSync(`which bash`); // no stdio: inherit so we can capture output
-
-let bash = bashBuffer.toString().trim();
-
 execSync(`${pryskBin} --shell="bash" "${testArg}"`, {
   stdio: "inherit",
 });
