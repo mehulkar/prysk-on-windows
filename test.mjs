@@ -12,10 +12,14 @@ console.log(`Running ${specificTest || "all"} tests... with ${pryskBin}`);
 const testArg = specificTest ? `tests/${specificTest}` : "tests";
 
 console.log("running which bash:");
-execSync(`which bash`, { stdio: "inherit" });
+const bashBuffer = execSync(`which bash`, { stdio: "inherit" });
+
+const bash = bashBuffer.toString();
+
+console.log("location of bash:", bash);
 
 try {
-  execSync(`${pryskBin} --shell="$(which bash)" "${testArg}"`, {
+  execSync(`${pryskBin} --shell="${bash}" "${testArg}"`, {
     stdio: "inherit",
   });
 } catch (e) {
