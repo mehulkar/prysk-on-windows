@@ -20,14 +20,8 @@ bash = isWindows ? bash + ".exe" : bash;
 
 console.log("location of bash:", bash);
 
-try {
-  execSync(`${pryskBin} --shell="${bash}" "${testArg}"`, {
-    stdio: "inherit",
-  });
-} catch (e) {
-  console.log("something went wrong", e);
-  // Swallow the node error stack trace. stdio: inherit should
-  // already have the test failures printed. We don't need the Node.js
-  // execution to also print its stack trace from execSync.
-  process.exit(1);
-}
+execSync("ls -al /usr/bin", { stdio: "inherit" });
+
+execSync(`${pryskBin} --shell="${bash}" "${testArg}"`, {
+  stdio: "inherit",
+});
