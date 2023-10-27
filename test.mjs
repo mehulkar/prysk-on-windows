@@ -16,12 +16,6 @@ const bashBuffer = execSync(`which bash`); // no stdio: inherit so we can captur
 
 let bash = bashBuffer.toString().trim();
 
-bash = isWindows ? bash + ".exe" : bash;
-
-console.log("location of bash:", bash);
-
-execSync("ls -al /usr/bin", { stdio: "inherit" });
-
-execSync(`${pryskBin} --shell="${bash}" "${testArg}"`, {
+execSync(`${pryskBin} --shell="bash" "${testArg}"`, {
   stdio: "inherit",
 });
