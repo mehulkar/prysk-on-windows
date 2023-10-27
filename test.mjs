@@ -11,6 +11,7 @@ console.log(`Running ${specificTest || "all"} tests... with ${pryskBin}`);
 
 const testArg = specificTest ? `tests/${specificTest}` : "tests";
 
+console.log("running which bash:");
 execSync(`which bash`, { stdio: "inherit" });
 
 try {
