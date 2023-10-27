@@ -21,7 +21,7 @@ bash = isWindows ? bash + ".exe" : bash;
 console.log("location of bash:", bash);
 
 try {
-  execSync(`${pryskBin} "${testArg}"`, {
+  execSync(`${pryskBin} --shell="${bash}" "${testArg}"`, {
     stdio: "inherit",
   });
 } catch (e) {
