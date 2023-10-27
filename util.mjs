@@ -8,7 +8,7 @@ const __dirname = __filename.replace(/[^/\\]*$/, "");
 const venvName = ".cram_env";
 const venvPath = path.join(__dirname, venvName);
 
-const isWindows = process.platform === "win32";
+export const isWindows = process.platform === "win32";
 
 const venvBin = isWindows
   ? path.join(venvPath, "Scripts")

@@ -1,6 +1,6 @@
 // disable package manager update notifiers
 import { execSync } from "child_process";
-import { getVenvBin } from "./util.mjs";
+import { getVenvBin, isWindows } from "./util.mjs";
 
 process.env.NO_UPDATE_NOTIFIER = 1;
 const specificTest = process.argv[2];
@@ -14,7 +14,9 @@ const testArg = specificTest ? `tests/${specificTest}` : "tests";
 console.log("running which bash:");
 const bashBuffer = execSync(`which bash`); // no stdio: inherit so we can capture output
 
-const bash = bashBuffer.toString().trim();
+let bash = bashBuffer.toString().trim();
+
+bash = isWindows ? bash + ".exe" : bash;
 
 console.log("location of bash:", bash);
 
