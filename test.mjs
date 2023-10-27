@@ -12,9 +12,9 @@ console.log(`Running ${specificTest || "all"} tests... with ${pryskBin}`);
 const testArg = specificTest ? `tests/${specificTest}` : "tests";
 
 console.log("running which bash:");
-const bashBuffer = execSync(`which bash`, { stdio: "inherit" });
+const bashBuffer = execSync(`which bash`); // no stdio: inherit so we can capture output
 
-const bash = bashBuffer.toString();
+const bash = bashBuffer.toString().trim();
 
 console.log("location of bash:", bash);
 
