@@ -13,6 +13,6 @@ execSync(`${python3} -m pip install --quiet --upgrade pip`, {
 
 console.log("install prysk@15");
 
-execSync(`${pip} install "prysk==0.15.0"`, { stdio: "inherit" });
+execSync(`${pip} install "prysk"`, { stdio: "inherit" });
 
 debugVenv();
