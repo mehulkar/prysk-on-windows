@@ -3,4 +3,4 @@ Setup
   hi
 
   $ cygpath fixture/package.json
-  fixture[/|\\]package.json (re)
+  fixture(/|\\)package.json (re)
