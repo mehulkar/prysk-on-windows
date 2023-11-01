@@ -1,3 +1,3 @@
 Setup
-  $ if [[ "$OSTYPE" == "msys" ]]; then cygpath fixture/package.json; else ls fixture/package.json; fi
+  $ if [[ "$OSTYPE" == "msys" ]]; then cygpath fixture/package.json; else echo $(basename $TESTDIR/fixture)/package.json; fi
   fixture(/|\\)package.json (re)
