@@ -4,15 +4,21 @@ on:
     branches: [main]
 
 jobs:
-  tmpdirs:
-    name: Test tmp dirs
+  tmpdirs_py:
+    name: Test Python
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Execute
+      - run: python3 run.py
         shell: bash
-        run: python3 run.py
+
+  tmpdirs_bash:
+    name: Test Bash
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: bash run.sh
+        shell: bash
 
   prysk:
     name: prysk
