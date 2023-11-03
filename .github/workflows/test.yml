@@ -4,16 +4,6 @@ on:
     branches: [main]
 
 jobs:
-  tmpdirs:
-    name: Test tmp dirs
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Execute
-        shell: bash
-        run: python3 run.py
-
   prysk:
     name: prysk
     runs-on: ${{ matrix.os.runner }}
