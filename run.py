@@ -14,5 +14,8 @@ os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" add ." % (tmpdir, tmpdir
 os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" commit -m \"Initial\" --quiet" % (tmpdir, tmpdir))
 
 
+os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" gc" % (tmpdir, tmpdir))
+
+
 print("Deleting tmpdir: %s" % tmpdir)
 shutil.rmtree(tmpdir)
