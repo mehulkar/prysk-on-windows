@@ -2,6 +2,8 @@ import os
 import shutil
 import tempfile
 
+print("tempdir is %s" % tempfile.gettempdir())
+
 tmpdir = tempfile.mkdtemp("", "prysk-tests-")
 print("Using temporary directory: %s" % tmpdir)
 
