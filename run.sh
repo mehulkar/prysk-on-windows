@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-dd=$(mktemp -d -t prysk-tests-)
+dd=$(mktemp -d -t prysk-tests-XXXXXX)
 echo "Using temporary directory: $dd"
 
 pushd "$dd" || exit 1
