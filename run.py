@@ -25,9 +25,8 @@ os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" commit -m \"Initial\" --
 
 ############
 
-
-print("Deleting %s", tmpdir1)
+print("Deleting tmpdir1: %s" % tmpdir1)
 shutil.rmtree(tmpdir1)
 
-print("Deleting %s", tmpdir2)
+print("Deleting tmpdir2: %s" % tmpdir2)
 shutil.rmtree(tmpdir2)
