@@ -10,7 +10,7 @@ print("Using temporary directory: %s" % tmpdir)
 
 # initialize a git repoository in the temporary directory
 # os.system("git init $dd --quiet --initial-branch=main" % tmpdir)
-os.system("pushd %s && mkdir -p foo && touch foo/bar && popd" % tmpdir)
+os.system("pushd %s && mkdir foo && touch foo/bar.txt && popd" % tmpdir)
 os.system("ls -al %s" % tmpdir)
 # os.system("ls -al %s/.git" % tmpdir)
 
