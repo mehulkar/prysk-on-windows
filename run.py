@@ -4,7 +4,7 @@ import tempfile
 
 print("tempdir is %s" % tempfile.gettempdir())
 
-tmpdir = tempfile.mkdtemp("", "prysk-tests-", "/tmp")
+tmpdir = tempfile.mkdtemp("", "prysk-tests-", "\\tmp")
 print("Using temporary directory: %s" % tmpdir)
 
 # initialize a git repoository in the temporary directory
