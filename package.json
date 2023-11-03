@@ -1,7 +1,6 @@
 {
   "name": "prysk-on-windows",
   "scripts": {
-    "pretest": "node ./setup.mjs",
     "test": "node ./test.mjs"
   }
 }

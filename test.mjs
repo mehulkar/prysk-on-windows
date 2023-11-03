@@ -1,16 +1,66 @@
-// disable package manager update notifiers
 import { execSync } from "child_process";
-import { getVenvBin, isWindows } from "./util.mjs";
+import path from "node:path";
+import { fileURLToPath } from "url";
 
-process.env.NO_UPDATE_NOTIFIER = 1;
-const specificTest = process.argv[2];
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = __filename.replace(/[^/\\]*$/, "");
 
-const pryskBin = getVenvBin("prysk");
+const venvName = ".cram_env";
+const venvPath = path.join(__dirname, venvName);
+const allowedVenvTools = ["python3", "pip", "prysk"];
 
-console.log(`Running ${specificTest || "all"} tests... with ${pryskBin}`);
+const isWindows = process.platform === "win32";
 
-const testArg = specificTest ? `tests/${specificTest}` : "tests";
+const venvBin = isWindows
+  ? path.join(venvPath, "Scripts")
+  : path.join(venvPath, "bin");
 
-execSync(`${pryskBin} --shell="bash" "${testArg}"`, {
+execSync(`python3 -m venv ${venvName}`, { stdio: "inherit" });
+
+const python3 = getVenvBin("python3");
+const pip = getVenvBin("pip");
+
+console.log("install latest pip");
+execSync(`${python3} -m pip install --quiet --upgrade pip`, {
   stdio: "inherit",
 });
+
+console.log("install prysk@15");
+execSync(`${pip} install "prysk"`, { stdio: "inherit" });
+
+// disable package manager update notifiers
+process.env.NO_UPDATE_NOTIFIER = 1;
+
+let specificTest = "tests";
+let testArg = process.argv[2];
+if (testArg) {
+  if (isWindows) {
+    testArg = testArg.replaceAll("/", path.sep);
+  }
+  specificTest = path.join("tests", testArg);
+}
+
+const pryskBin = getVenvBin("prysk");
+const flags = ["--shell=bash", isWindows ? "--dos2unix" : ""].join(" ");
+
+const cmd = `${pryskBin} ${flags} "${specificTest}"`;
+console.log(`Running ${cmd}`);
+
+try {
+  execSync(cmd, { stdio: "inherit" });
+} catch (e) {
+  // Swallow the node error stack trace. stdio: inherit should
+  // already have the test failures printed. We don't need the Node.js
+  // execution to also print its stack trace from execSync.
+  process.exit(1);
+}
+
+function getVenvBin(tool) {
+  if (!allowedVenvTools.includes(tool)) {
+    throw new Error(`Tool not allowed: ${tool}`);
+  }
+
+  const suffix = isWindows ? ".exe" : "";
+
+  return path.join(venvBin, tool + suffix);
+}
