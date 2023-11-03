@@ -2,7 +2,7 @@
 
 TARGET_DIR=$1
 
-TMPDIR=$(mktemp -d) # TODO: is this the issue?
+# TMPDIR=$(mktemp -d) # TODO: is this the issue?
 THIS_DIR=$(dirname "${BASH_SOURCE[0]}")
 cp -a "${THIS_DIR}/fixture/." "${TARGET_DIR}/"
 git init "${TARGET_DIR}" --quiet --initial-branch=main
