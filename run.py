@@ -9,6 +9,9 @@ print("Using temporary directory: %s" % tmpdir)
 os.system("git init %s --quiet --initial-branch=main" % tmpdir)
 os.system("pushd %s && touch foo && popd" % tmpdir)
 
+os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" config user.email \"turbo-test@example.com\"" % (tmpdir, tmpdir))
+os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" config user.name \"Turbo Test\"" % (tmpdir, tmpdir))
+
 os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" add ." % (tmpdir, tmpdir))
 os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" commit -m \"Initial\" --quiet" % (tmpdir, tmpdir))
 
