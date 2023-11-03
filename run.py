@@ -7,7 +7,7 @@ print("tempdir is %s" % tempfile.gettempdir())
 ############
 tmpdir1 = tempfile.mkdtemp("", "prysk-tests-")
 print("tmpdir1: %s" % tmpdir1)
-os.system("git init $dd --quiet --initial-branch=main" % tmpdir1)
+os.system("git init %s --quiet --initial-branch=main" % tmpdir1)
 os.system("pushd %s && mkdir foo && touch foo/bar.txt && popd" % tmpdir1)
 os.system("ls -al %s" % tmpdir1)
 os.system("ls -al %s/.git" % tmpdir1)
