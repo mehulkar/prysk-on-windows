@@ -26,7 +26,7 @@ execSync(`${python3} -m pip install --quiet --upgrade pip`, {
 });
 
 console.log("install prysk");
-execSync(`${pip} install "prysk-windows"`, { stdio: "inherit" });
+execSync(`${pip} install "prysk-windows"`);
 
 // disable package manager update notifiers
 process.env.NO_UPDATE_NOTIFIER = 1;
