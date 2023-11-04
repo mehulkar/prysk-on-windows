@@ -35,7 +35,9 @@ jobs:
             runner: windows-latest
     steps:
       - uses: actions/checkout@v3
-      - run: git config --local core.autocrlf input
+
+      - run: git config --global core.autocrlf input
+        if: matrix.os.name == 'windows'
         shell: bash
 
       - name: Execute
