@@ -1,5 +1,6 @@
 import os
 import shutil
+import stat
 import tempfile
 
 tmpdir = tempfile.mkdtemp("", "prysk-tests-")
@@ -14,4 +15,8 @@ os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" add ." % (tmpdir, tmpdir
 os.system("git --git-dir=\"%s/.git\" --work-tree=\"%s\" commit -m \"Initial\" --quiet" % (tmpdir, tmpdir))
 
 print("Deleting tmpdir: %s" % tmpdir)
-shutil.rmtree(tmpdir)
+def onerror(func, path, exc_info):
+    os.chmod(path, stat.S_IWRITE)
+    os.unlink(path)
+
+shutil.rmtree(tmpdir, onerror=onerror)
