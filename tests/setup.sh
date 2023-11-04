@@ -11,6 +11,11 @@ git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" config user.email
 git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" config user.name "Turbo Test"
 
 echo "script-shell=$(which bash)" > "${TARGET_DIR}/.npmrc"
+# We just created a new file. On Windows, we need to convert it to Unix line endings
+# so the hashes will be stable with what's expected in our test cases.
+if [[ "$OSTYPE" == "msys" ]]; then
+    dos2unix "$TARGET_DIR/.npmrc"
+fi
 
 npm install --silent
 
