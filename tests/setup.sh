@@ -9,7 +9,9 @@ git init "${TARGET_DIR}" --quiet --initial-branch=main
 
 git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" config user.email "turbo-test@example.com"
 git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" config user.name "Turbo Test"
-echo "script-shell=$(which bash)" > ${TARGET_DIR}/.npmrc
+
+echo "script-shell=$(which bash)" > "${TARGET_DIR}/.npmrc"
+
 npm install --silent
 
 git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" add .
