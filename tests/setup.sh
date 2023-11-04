@@ -17,11 +17,7 @@ if [[ "$OSTYPE" == "msys" ]]; then
     dos2unix --quiet "$TARGET_DIR/.npmrc"
 fi
 
-echo "running npm install"
 npm install --silent
 
-echo "git add ."
 git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" add .
-
-echo "git commit "
 git --git-dir="${TARGET_DIR}/.git" --work-tree="${TARGET_DIR}" commit -m "Initial" --quiet
