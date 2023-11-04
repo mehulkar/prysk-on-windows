@@ -35,6 +35,8 @@ jobs:
             runner: windows-latest
     steps:
       - uses: actions/checkout@v3
+      - run: git config --local core.autocrlf input
+        shell: bash
 
       - name: Execute
         shell: bash
